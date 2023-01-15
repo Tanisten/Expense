@@ -1,0 +1,36 @@
+
+.ExpenseItem {
+    background-color: #4B4B4B;
+    border-radius: 8px;
+    border: none;
+    margin: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    
+}
+
+p {
+    color: white;
+}
+.price {
+    font-size: 20px;
+    font-weight: 700px;
+    padding: 10px 18px;
+    border: 2px solid white;
+    border-radius: 8px;
+    background-color: #40005D;
+}
+.lowerdiv {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.title {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
