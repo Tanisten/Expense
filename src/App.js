@@ -5,7 +5,7 @@ import Expenses from './components/expenses/Expenses';
 import NewExpence from './components/new-expense/NewExpense';
 import styles from "./App.module.css"
 
-
+// Now its App js
 
 const expensesDefault = [
   {
