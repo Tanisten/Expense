@@ -1,0 +1,25 @@
+.firstContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 14px;
+    
+    
+}
+
+.secondContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.thirdContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.firstContainer, .secondContainer, .thirdContainer{
+    padding: 20px 40px 0 40px;
+}

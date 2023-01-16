@@ -1,0 +1,32 @@
+.DateDiv {
+    width: 80px;
+    height: 82px;
+    border-radius: 10px ;
+    border: 2px solid white;
+    text-align: center;
+    
+}
+
+.month{
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.year {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+
+}
+
+.day {
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+}
+
+.year, .month, .day {
+    
+    margin: 8px ;
+    
+}
