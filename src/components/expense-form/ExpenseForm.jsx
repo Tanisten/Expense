@@ -1,8 +1,23 @@
 import { useState } from "react";
-import Button from "../UI/button/button";
 import FormInput from "../UI/formInput/formInput";
 import  "./ExpenseForm.css"
+import styled from "styled-components"
 
+const DeleteButton = styled.button`
+color: white;
+padding: 16px 18px;
+border: none;
+border-radius: 1vh;
+margin: 14px;
+background-color: red`
+
+const SaveButton = styled.button`
+color: white;
+padding: 16px 18px;
+border: none;
+border-radius: 1vh;
+margin: 14px;
+background-color: chartreuse`
 
 
 const ExpenseForm = (props) => {
@@ -76,8 +91,8 @@ const ExpenseForm = (props) => {
         
       </div>
       <div className="thirdContainer">
-        <Button onClick={cancelHandler} backgroundColor={"#4A026B"}>Cancel</Button>
-        <Button onClick={saveHandler} backgroundColor={"#4A026B"}>Save</Button>
+        <DeleteButton onClick={cancelHandler} backgroundColor={"#4A026B"}>Cancel</DeleteButton>
+        <SaveButton onClick={saveHandler} backgroundColor={"#4A026B"}>Save</SaveButton>
       </div>
     </form>
   );

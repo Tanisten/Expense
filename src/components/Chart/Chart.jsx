@@ -1,7 +1,11 @@
 import styles from "./Chart.module.css";
 import { ChartBar } from "./ChartBar";
+import styled from "styled-components"
 
-export const Chart = (props) => {
+
+
+
+export const Chart = ({expenses, theme, ...rest}) => {
   const maximumPrice = 2000;
   const months = [
     {
@@ -54,7 +58,7 @@ export const Chart = (props) => {
     },
   ];
 
-  props.expenses.forEach((item) => {
+  expenses.forEach((item) => {
     const newDateMonth = new Date(item.date);
 
     const monthNumber = newDateMonth.getMonth();
@@ -63,14 +67,15 @@ export const Chart = (props) => {
   });
   const getContainerClassName = ()=>{
     return `${
-      props.theme === "violet" ? styles.chartChartreuse : styles.chartViolet
+      theme === "violet" ? styles.chartChartreuse : styles.chartViolet
     } ${styles.chart}`
   }
 
   return (
-    <div
-      className={getContainerClassName()}
-    >
+   
+    <Container theme={theme} padding={"2rem"} {...rest}>
+      <StyledButton color="green">Text</StyledButton>
+      <StyledButton color="blue">Text</StyledButton>
       {months.map((item) => {
         return (
           <ChartBar
@@ -81,6 +86,41 @@ export const Chart = (props) => {
           />
         );
       })}
-    </div>
+    </Container>
   );
 };
+
+
+
+export const getTheme = (props)=>{
+    let theme = "chartreuse"
+   if(props.theme==="violet"){
+     theme = "violet"
+   }
+   if(props.theme==="red"){
+     theme = "red"
+   }
+   
+   
+   return (theme)
+   }
+   
+   
+   export const Container = styled.div`
+     padding: ${(props)=>{
+       return (props.padding)
+   
+     }};
+     border-radius: 12px;
+     text-align: center;
+     display: flex;
+     justify-content: space-around;
+     height: 10rem;
+     background-color: ${getTheme};
+     
+   `
+   
+   export const StyledButton = styled.button`
+   background-color: ${props=>props.color}
+   `
+   
