@@ -5,6 +5,7 @@ import styled from "styled-components"
 
 
 
+
 export const Chart = ({expenses, theme, ...rest}) => {
   const maximumPrice = 2000;
   const months = [
@@ -72,8 +73,8 @@ export const Chart = ({expenses, theme, ...rest}) => {
   }
 
   return (
-   
-    <Container theme={theme} padding={"2rem"} {...rest}>
+   <>
+<Container theme={theme} padding={"2rem"} {...rest}>
       <StyledButton color="green">Text</StyledButton>
       <StyledButton color="blue">Text</StyledButton>
       {months.map((item) => {
@@ -87,7 +88,10 @@ export const Chart = ({expenses, theme, ...rest}) => {
         );
       })}
     </Container>
+    </>
   );
+  
+    
 };
 
 

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Chart } from "../Chart/Chart";
 import ExpenseItem from "../expense-item/ExpenseItem";
 import { ExpensesFilter } from "../ExpensesFilter/ExpensesFilter";
-import "./expense.css";
 import styled from "styled-components";
 
 const Expenses = (props) => {
@@ -22,7 +21,7 @@ const Expenses = (props) => {
   });
   console.log(filteredItems);
   return (
-    <ul className="style">
+    <StyledUl>
       <ExpensesFilter value={selectedYear} onChange={yearchangeHandler} />
 
       <StyledChart expenses={filteredItems} theme="chartreuse" />
@@ -43,7 +42,7 @@ const Expenses = (props) => {
           />
         );
       })}
-    </ul>
+    </StyledUl>
   );
 };
 
@@ -54,3 +53,15 @@ const StyledChart = styled(Chart)`
   margin-left: 20px;
   margin-right: 20px;
 `;
+
+const StyledUl = styled.ul`
+margin: 0 auto;
+  margin-top: 20px;
+  width: 780px;
+  background-color: #1f1f1f ;
+  padding: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+
+`
