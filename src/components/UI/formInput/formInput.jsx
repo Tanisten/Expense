@@ -1,6 +1,6 @@
 import "./formInput.css"
 
-const FormInput = ({labelName, id,placeholder,inputType, ...rest}) => {
+const FormInput = ({labelName, id,placeholder,inputType, reference, ...rest}) => {
   return (
     <div className="container">
       <label htmlFor="name" className="label">{labelName}</label>
@@ -9,7 +9,11 @@ const FormInput = ({labelName, id,placeholder,inputType, ...rest}) => {
         placeholder={placeholder || "..."}
         name="name"
         type={inputType}
+        ref={reference}
+         
        {...rest}
+
+
       />
     </div>
   );

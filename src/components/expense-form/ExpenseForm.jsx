@@ -1,62 +1,62 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import FormInput from "../UI/formInput/formInput";
-import  "./ExpenseForm.css"
-import styled from "styled-components"
+import "./ExpenseForm.css";
+import styled from "styled-components";
 
-const DeleteButton = styled.button`
-color: white;
-padding: 16px 18px;
-border: none;
-border-radius: 1vh;
-margin: 14px;
-background-color: red`
-
-const SaveButton = styled.button`
-color: white;
-padding: 16px 18px;
-border: none;
-border-radius: 1vh;
-margin: 14px;
-background-color: chartreuse`
 
 
 const ExpenseForm = (props) => {
-  const [title, setTitle] = useState("");
+  /* const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(""); */
+
+  const titleInputRef = useRef();
+  const amountInputRef = useRef();
+  const dateInputRef = useRef();
 
   //Cancelbutton
   const cancelHandler = (event) => {
     event.preventDefault();
     props.onShowForm();
+    props.saveHandler();
   };
 
-  //titleEvent
-  const titleInputChangeHandler = (event) => {
-    console.log(event.target.value);
-    setTitle(event.target.value);
-  };
-
-  //priceEvent
-  const priceInputChangeHandler = (event) => {
-    const value = event.target.value;
-
-    setPrice(value);
-  };
-  // dateEvent
-  const dateInputChangeHandler = (event) => {
-    console.log(event.target.value);
-    setDate(event.target.value);
-  };
+   
 
   const saveHandler = (event) => {
     event.preventDefault();
+
+    const titleValue = titleInputRef.current.value;
+    const dateValue = dateInputRef.current.value;
+    const priceValue = amountInputRef.current.value;
+    if (titleValue === "") {
+      titleInputRef.current.focus();
+      titleInputRef.current.style.outline = "2px solid red";
+    }
+    if (priceValue === "") {
+      amountInputRef.current.focus();
+      amountInputRef.current.style.outline = "2px solid red";
+    }
+    if (dateValue === "") {
+      dateInputRef.current.focus();
+      dateInputRef.current.style.outline = "2px solid red";
+    }
+
     const expenseData = {
-      title,
-      date,
-      price,
+      title: titleValue,
+      date: new Date(dateValue),
+      price: priceValue,
     };
     props.onNewExpenseAdd(expenseData);
+    if (titleValue !== "" && priceValue !== "" && dateValue !== "") {
+      props.saveHandler();
+    }
+  };
+
+  const testRefHandler = (event) => {
+    event.preventDefault();
+
+    titleInputRef.current.focus();
   };
 
   return (
@@ -67,15 +67,17 @@ const ExpenseForm = (props) => {
           labelName="Title"
           inputType="text"
           placeholder="Type text"
-          value={title}
-          onChange={titleInputChangeHandler}
+          /*  value={title}
+          onChange={titleInputChangeHandler} */
+          reference={titleInputRef}
         />
         <FormInput
           id="price"
           labelName="Quantity"
           inputType="number"
-          value={price}
-          onChange={priceInputChangeHandler}
+          /* value={price}
+          onChange={priceInputChangeHandler} */
+          reference={amountInputRef}
         />
       </div>
 
@@ -85,17 +87,42 @@ const ExpenseForm = (props) => {
           labelName="Date"
           inputType="date"
           placeholder="dd.mm.yyyy"
-          value={date}
-          onChange={dateInputChangeHandler}
+          /* value={date}
+          onChange={dateInputChangeHandler} */
+          reference={dateInputRef}
         />
-        
       </div>
       <div className="thirdContainer">
-        <DeleteButton onClick={cancelHandler} backgroundColor={"#4A026B"}>Cancel</DeleteButton>
-        <SaveButton onClick={saveHandler} backgroundColor={"#4A026B"}>Save</SaveButton>
+        <button onClick={testRefHandler} backgroundColor={"#4A026B"}>
+          Test Ref
+        </button>
+        <DeleteButton onClick={cancelHandler} backgroundColor={"#4A026B"}>
+          Cancel
+        </DeleteButton>
+        <SaveButton onClick={saveHandler} backgroundColor={"#4A026B"}>
+          Save
+        </SaveButton>
       </div>
     </form>
   );
 };
 
 export default ExpenseForm;
+
+const DeleteButton = styled.button`
+  color: white;
+  padding: 16px 18px;
+  border: none;
+  border-radius: 1vh;
+  margin: 14px;
+  background-color: red;
+`;
+
+const SaveButton = styled.button`
+  color: white;
+  padding: 16px 18px;
+  border: none;
+  border-radius: 1vh;
+  margin: 14px;
+  background-color: chartreuse;
+`;

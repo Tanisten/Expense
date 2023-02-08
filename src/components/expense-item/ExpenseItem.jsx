@@ -12,8 +12,10 @@ const ExpenseItem = ({ date, title, price }) => {
     setModalVisibility((prevState) => !prevState);
   };
 
+  const [isItemVisible, setItemVisibility] = useState(true)
   const confirmHandler = () => {
     //
+setItemVisibility(false)
     setModalVisibility(false);
   };
   return (
@@ -21,8 +23,7 @@ const ExpenseItem = ({ date, title, price }) => {
       {isModalVisible ? (
         <ConfirmDeleteModal onClose={toggleModalHandler} onConfirm={confirmHandler}/>
       ) : null}
-
-      <div className="ExpenseItem">
+{isItemVisible? <div className="ExpenseItem">
         <div className="lowerdiv">
           <DateForItem date={date} />
           <p className="title">{title}</p>
@@ -30,7 +31,8 @@ const ExpenseItem = ({ date, title, price }) => {
 
         <p className="price">$ {price},00</p>
         <button onClick={toggleModalHandler}>DELETE</button>
-      </div>
+      </div> : null}
+      
     </>
   );
 };

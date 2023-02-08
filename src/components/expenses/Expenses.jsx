@@ -26,11 +26,7 @@ const Expenses = (props) => {
 
       <StyledChart expenses={filteredItems} theme="chartreuse" />
 
-      {/* Old Version Chart */}
-      {/* Old Version Chart */}
-      {/* Old Version Chart */}
-
-      {/* <Chart expenses={filteredItems} theme="red" /> */}
+      
 
       {filteredItems.map((element) => {
         return (
